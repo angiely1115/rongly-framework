@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.xs.rongly.framework.stater.core.base.util.concurrent.executor.ThreadPoolConfiguration,\
+com.xs.rongly.framework.stater.core.base.autoJsonConfig.JsonConfig
