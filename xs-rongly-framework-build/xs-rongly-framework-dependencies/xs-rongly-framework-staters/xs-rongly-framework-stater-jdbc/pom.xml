@@ -12,7 +12,7 @@
     <artifactId>xs-rongly-framework-stater-jdbc</artifactId>
 
     <dependencies>
-      <!--  <dependency>
+        <!--<dependency>
             <groupId>io.shardingsphere</groupId>
             <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
             <exclusions>

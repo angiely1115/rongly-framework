@@ -3,6 +3,7 @@ package com.xs.rongly.framework.stater.jdbc.autoConfig.sharingWriteRead;
 import com.vip.vjtools.vjkit.collection.MapUtil;
 import com.zaxxer.hikari.HikariDataSource;
 import io.shardingsphere.shardingjdbc.api.MasterSlaveDataSourceFactory;
+import io.shardingsphere.shardingjdbc.api.ShardingDataSourceFactory;
 import net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator;
 import net.sf.log4jdbc.sql.jdbcapi.DataSourceSpy;
 import org.springframework.beans.BeansException;
@@ -34,10 +35,12 @@ import java.util.Optional;
  */
 @Configuration
 @Import(LogJdbcInit.class)
-@EnableConfigurationProperties({SpringBootMasterSlaveRuleConfigurationProperties.class,RonglyJdbCProperties.class})
-public class SharingJDBCWriteReadAutoConfig{
+@EnableConfigurationProperties({SpringBootMasterSlaveRuleConfigurationProperties.class,RonglyJdbCProperties.class,SpringBootShardingRuleConfigurationProperties.class})
+public class ShardingJDBCAutoConfig {
     @Autowired
     private SpringBootMasterSlaveRuleConfigurationProperties masterSlaveProperties;
+    @Autowired
+    private SpringBootShardingRuleConfigurationProperties shardingProperties;
     @Autowired
     private RonglyJdbCProperties ronglyJdbCProperties;
 
@@ -46,8 +49,15 @@ public class SharingJDBCWriteReadAutoConfig{
     @Bean
     public DataSource dataSource() throws SQLException {
         Map<String,DataSource> dataSourceMap =  this.createMapDataSource();
-      DataSource dataSource =  MasterSlaveDataSourceFactory.createDataSource(
-                dataSourceMap, masterSlaveProperties.getMasterSlaveRuleConfiguration(), masterSlaveProperties.getConfigMap(), masterSlaveProperties.getProps());
+        String master = masterSlaveProperties.getMasterDataSourceName();
+        DataSource dataSource = null;
+        if(master!=null){
+            dataSource  =  MasterSlaveDataSourceFactory.createDataSource(
+                    dataSourceMap, masterSlaveProperties.getMasterSlaveRuleConfiguration(), masterSlaveProperties.getConfigMap(), masterSlaveProperties.getProps());
+        }else {
+            dataSource = ShardingDataSourceFactory.createDataSource(dataSourceMap, shardingProperties.getShardingRuleConfiguration(), shardingProperties.getConfigMap(), shardingProperties.getProps());
+        }
+
         DataSourceSpy dataSourceSpy = new DataSourceSpy(dataSource);
         return dataSourceSpy;
     }

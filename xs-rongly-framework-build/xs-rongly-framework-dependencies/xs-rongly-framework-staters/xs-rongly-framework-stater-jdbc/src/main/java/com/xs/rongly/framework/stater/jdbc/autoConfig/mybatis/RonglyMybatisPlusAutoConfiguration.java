@@ -8,7 +8,7 @@ package com.xs.rongly.framework.stater.jdbc.autoConfig.mybatis;
 import com.baomidou.mybatisplus.MybatisConfiguration;
 import com.baomidou.mybatisplus.MybatisXMLLanguageDriver;
 import com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean;
-import com.xs.rongly.framework.stater.jdbc.autoConfig.sharingWriteRead.SharingJDBCWriteReadAutoConfig;
+import com.xs.rongly.framework.stater.jdbc.autoConfig.sharingWriteRead.ShardingJDBCAutoConfig;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
@@ -50,7 +50,7 @@ import java.util.List;
 @Configuration
 @ConditionalOnClass({SqlSessionFactory.class, MybatisSqlSessionFactoryBean.class})
 @EnableConfigurationProperties({MybatisPlusProperties.class})
-@AutoConfigureAfter({SharingJDBCWriteReadAutoConfig.class})
+@AutoConfigureAfter({ShardingJDBCAutoConfig.class})
 public class RonglyMybatisPlusAutoConfiguration {
     private static final Log logger = LogFactory.getLog(RonglyMybatisPlusAutoConfiguration.class);
     private final MybatisPlusProperties properties;
