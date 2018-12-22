@@ -144,6 +144,12 @@
                 <artifactId>jackson-databind</artifactId>
                 <version>2.9.7</version>
             </dependency>
+            <!--spring状态机-->
+            <dependency>
+                <groupId>org.springframework.statemachine</groupId>
+                <artifactId>spring-statemachine-core</artifactId>
+                <version>2.0.3.RELEASE</version>
+            </dependency>
             <!--my staters-->
             <dependency>
                 <groupId>xs.rongly.framework.truffle</groupId>
