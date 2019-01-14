@@ -45,6 +45,7 @@ public class RonglyRedisAutoConfig {
 
 
     @Bean
+    @Primary
     public RedisCacheManager getRedisCacheManager(RedisConnectionFactory redisConnectionFactory) {
         CustomRedisCacheWriter customRedisCacheWriter = new CustomRedisCacheWriter(
                 RedisCacheWriter.lockingRedisCacheWriter(redisConnectionFactory));

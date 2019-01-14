@@ -178,6 +178,11 @@
                 <artifactId>xs-rongly-framework-stater-jdbc</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>xs.rongly.framework.truffle</groupId>
+                <artifactId>xs-rongly-framework-stater-mongodb</artifactId>
+                <version>${revision}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>

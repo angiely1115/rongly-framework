@@ -36,9 +36,10 @@ public class ThreadPoolConfiguration implements AsyncConfigurer {
     ThreadPoolTaskExecutor threadPool = new ThreadPoolTaskExecutor();
     threadPool.setCorePoolSize(corePoolSize);
     threadPool.setMaxPoolSize(maxPoolSize);
+    //设置等任务执行完成线程池再关闭
     threadPool.setWaitForTasksToCompleteOnShutdown(true);
     threadPool.setAwaitTerminationSeconds(60 * 15);
-    threadPool.setThreadNamePrefix("orderAsync-");
+    threadPool.setThreadNamePrefix("rongly-Async-");
     threadPool.setQueueCapacity(queueCapacity);
     threadPool.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
     threadPool.initialize();

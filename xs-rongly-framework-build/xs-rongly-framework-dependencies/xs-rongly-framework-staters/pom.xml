@@ -21,6 +21,7 @@
         <module>xs-rongly-framework-starter-redis</module>
         <module>xs-rongly-framework-stater-jdbc</module>
         <module>xs-rongly-framework-stater-mybatis</module>
+        <module>xs-rongly-framework-stater-mongodb</module>
     </modules>
 
     <dependencies>
