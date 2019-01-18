@@ -17,23 +17,25 @@
     </snapshotRepository>
   </distributionManagement>
   <properties>
-    <commons-io.version>2.6</commons-io.version>
-    <reflections.version>0.9.11</reflections.version>
-    <java.version>1.8</java.version>
-    <log4jdbc.version>1.16</log4jdbc.version>
-    <shardingsphere.release.version>3.0.0</shardingsphere.release.version>
-    <main.basedir>D:\resource\workspace\framework\xs-rongly-framework-build\xs-rongly-framework-dependencies</main.basedir>
-    <mybatis-plus.version>2.3</mybatis-plus.version>
-    <mybatis.pagehelper.version>5.1.2</mybatis.pagehelper.version>
-    <commons-beanutils.version>1.9.3</commons-beanutils.version>
     <nexus.url>http://47.95.120.66:8081</nexus.url>
-    <spring-cloud.version>Finchley.SR1</spring-cloud.version>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <revision>1.1.0-SNAPSHOT</revision>
-    <spring.boot.version>2.1.0.RELEASE</spring.boot.version>
     <curator.version>2.11.1</curator.version>
     <commons.lang.version>3.6</commons.lang.version>
+    <vip.vjtools>1.0.8</vip.vjtools>
+    <mybatis.pagehelper.version>5.1.2</mybatis.pagehelper.version>
+    <mybatis-plus.version>2.3</mybatis-plus.version>
+    <commons-beanutils.version>1.9.3</commons-beanutils.version>
+    <spring-cloud.version>Finchley.SR1</spring-cloud.version>
+    <commons-io.version>2.6</commons-io.version>
+    <spring.boot.version>2.1.0.RELEASE</spring.boot.version>
+    <reflections.version>0.9.11</reflections.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <revision>1.1.0-SNAPSHOT</revision>
+    <java.version>1.8</java.version>
+    <jsoup.version>1.11.2</jsoup.version>
+    <shardingsphere.release.version>3.0.0</shardingsphere.release.version>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <log4jdbc.version>1.16</log4jdbc.version>
+    <main.basedir>D:\resource\workspace\framework\xs-rongly-framework-build\xs-rongly-framework-dependencies</main.basedir>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -119,7 +121,7 @@
       <dependency>
         <groupId>com.vip.vjtools</groupId>
         <artifactId>vjkit</artifactId>
-        <version>1.0.6</version>
+        <version>${vip.vjtools}</version>
       </dependency>
       <dependency>
         <groupId>com.fasterxml.jackson.dataformat</groupId>
@@ -165,6 +167,16 @@
         <groupId>xs.rongly.framework.truffle</groupId>
         <artifactId>xs-rongly-framework-stater-mongodb</artifactId>
         <version>${revision}</version>
+      </dependency>
+      <dependency>
+        <groupId>xs.rongly.framework.truffle</groupId>
+        <artifactId>xs-rongly-framework-core-base</artifactId>
+        <version>${revision}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jsoup</groupId>
+        <artifactId>jsoup</artifactId>
+        <version>${jsoup.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

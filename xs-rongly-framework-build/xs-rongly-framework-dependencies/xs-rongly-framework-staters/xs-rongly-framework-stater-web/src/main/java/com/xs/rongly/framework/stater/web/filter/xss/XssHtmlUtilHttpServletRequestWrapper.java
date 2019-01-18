@@ -2,27 +2,31 @@ package com.xs.rongly.framework.stater.web.filter.xss;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
-import java.io.*;
+import javax.swing.text.html.HTML;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.stream.Stream;
 
-
+/**
+ * 通过htmlutil防御xss
+ */
 @Slf4j
-public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
-
-  private HttpServletRequest orgRequest = null;
+public class XssHtmlUtilHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
   //判断是否是上传 上传忽略
   boolean isUpData = false;
 
-  public XssHttpServletRequestWrapper(HttpServletRequest request) {
+  public XssHtmlUtilHttpServletRequestWrapper(HttpServletRequest request) {
     super(request);
-    orgRequest = request;
     String contentType = request.getContentType();
     if (null != contentType) {
       isUpData = contentType.startsWith("multipart");
@@ -37,9 +41,11 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
   @Override
   public String getParameter(String name) {
     String value = super.getParameter(name);
+    log.debug("过滤前的值:{}",value);
     if (value != null) {
-      value = JsoupUtil.clean(value);
+      value = HtmlUtils.htmlEscape(value);
     }
+    log.debug("过滤后的值:{}",value);
     return value;
   }
 
@@ -50,9 +56,11 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
   @Override
   public String[] getParameterValues(String name) {
     String[] values = super.getParameterValues(name);
+    log.debug("过滤前的值:{}",values);
     if (ArrayUtils.isNotEmpty(values)) {
-      values = Stream.of(values).map(s -> JsoupUtil.clean(name)).toArray(String[]::new);
+      values = Stream.of(values).map(s -> HtmlUtils.htmlEscape(s)).toArray(String[]::new);
     }
+    log.debug("过滤后的值:{}",values);
     return values;
   }
 
@@ -65,7 +73,7 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
   public String getHeader(String name) {
     String value = super.getHeader(name);
     if (value != null) {
-      value = JsoupUtil.clean(value);
+      value = HtmlUtils.htmlEscape(value);
     }
     return value;
   }
@@ -128,7 +136,8 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
         }
       }
     }
-    String finl = JsoupUtil.cleanJson(sb.toString());
+    String finl = JsoupUtil.jsonStringConvert(sb.toString());
+    finl = HtmlUtils.htmlEscape(finl);
     return finl;
   }
 
