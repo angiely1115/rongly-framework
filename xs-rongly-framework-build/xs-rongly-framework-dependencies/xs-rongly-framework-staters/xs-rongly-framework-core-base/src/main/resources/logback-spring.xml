@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="common-logback.xml"/>
+    <springProfile name="local"><!-- 日志输出级别 -->
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+    <springProfile name="dev"><!-- 日志输出级别 -->
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="INFO"/>
+            <appender-ref ref="ERROR"/>
+            <appender-ref ref="DEV_SYSLOG"/>
+        </root>
+    </springProfile>
+    <springProfile name="test"><!-- 日志输出级别 -->
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="INFO"/>
+            <appender-ref ref="ERROR"/>
+            <appender-ref ref="TEST_SYSLOG"/>
+            <!--<appender-ref ref="SENTRY"/>-->
+        </root>
+    </springProfile>
+    <springProfile name="pro"><!-- 日志输出级别 -->
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="INFO"/>
+            <appender-ref ref="ERROR"/>
+          <!--  <appender-ref ref="SENTRY"/>-->
+        </root>
+    </springProfile>
+</configuration>
+
+
+
+
+
+
+
+
