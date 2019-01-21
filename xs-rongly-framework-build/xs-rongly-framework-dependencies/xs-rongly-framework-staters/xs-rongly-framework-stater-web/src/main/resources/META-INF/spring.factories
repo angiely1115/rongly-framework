@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.xs.rongly.framework.stater.web.shutdown.GracefulShutdownAutoConfiguration
+com.xs.rongly.framework.stater.web.shutdown.GracefulShutdownAutoConfiguration,\
+com.xs.rongly.framework.stater.web.error.AdviceErrorConfig

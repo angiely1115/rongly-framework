@@ -191,6 +191,11 @@
                 <version>${revision}</version>
             </dependency>
             <dependency>
+                <groupId>xs.rongly.framework.truffle</groupId>
+                <artifactId>xs.rongly.framework.stater.security</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.jsoup</groupId>
                 <artifactId>jsoup</artifactId>
                 <version>${jsoup.version}</version>

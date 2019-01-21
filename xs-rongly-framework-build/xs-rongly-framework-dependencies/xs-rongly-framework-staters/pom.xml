@@ -22,6 +22,7 @@
         <module>xs-rongly-framework-stater-jdbc</module>
         <module>xs-rongly-framework-stater-mybatis</module>
         <module>xs-rongly-framework-stater-mongodb</module>
+        <module>xs-rongly-framework-stater-security</module>
     </modules>
 
     <dependencies>
