@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.xs.rongly.framework.starter.shedJoblock.ScheduleTasksAutoConfig,\
+com.xs.rongly.framework.starter.shedJoblock.ScheduledTasksEndpoint

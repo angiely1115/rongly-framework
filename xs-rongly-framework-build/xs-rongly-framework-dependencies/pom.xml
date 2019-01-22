@@ -31,6 +31,7 @@
         <mybatis-plus.version>2.3</mybatis-plus.version>
         <vip.vjtools>1.0.8</vip.vjtools>
         <jsoup.version>1.11.2</jsoup.version>
+        <shedlock.version>2.2.0</shedlock.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -152,6 +153,22 @@
                 <artifactId>spring-statemachine-core</artifactId>
                 <version>2.0.3.RELEASE</version>
             </dependency>
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.version}</version>
+            </dependency>
+            <!--轻量级定时任务锁 也是基于redis实现-->
+            <dependency>
+                <groupId>net.javacrumbs.shedlock</groupId>
+                <artifactId>shedlock-spring</artifactId>
+                <version>${shedlock.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.javacrumbs.shedlock</groupId>
+                <artifactId>shedlock-provider-redis-spring</artifactId>
+                <version>${shedlock.version}</version>
+            </dependency>
             <!--my staters-->
             <dependency>
                 <groupId>xs.rongly.framework.truffle</groupId>
@@ -196,9 +213,9 @@
                 <version>${revision}</version>
             </dependency>
             <dependency>
-                <groupId>org.jsoup</groupId>
-                <artifactId>jsoup</artifactId>
-                <version>${jsoup.version}</version>
+                <groupId>xs.rongly.framework.truffle</groupId>
+                <artifactId>xs-rongly-framework-starter-shedJoblock</artifactId>
+                <version>${revision}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -31,6 +31,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <revision>1.1.0-SNAPSHOT</revision>
     <java.version>1.8</java.version>
+    <shedlock.version>2.2.0</shedlock.version>
     <jsoup.version>1.11.2</jsoup.version>
     <shardingsphere.release.version>3.0.0</shardingsphere.release.version>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -139,6 +140,21 @@
         <version>2.0.3.RELEASE</version>
       </dependency>
       <dependency>
+        <groupId>org.jsoup</groupId>
+        <artifactId>jsoup</artifactId>
+        <version>${jsoup.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.javacrumbs.shedlock</groupId>
+        <artifactId>shedlock-spring</artifactId>
+        <version>${shedlock.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.javacrumbs.shedlock</groupId>
+        <artifactId>shedlock-provider-redis-spring</artifactId>
+        <version>${shedlock.version}</version>
+      </dependency>
+      <dependency>
         <groupId>xs.rongly.framework.truffle</groupId>
         <artifactId>xs-rongly-framework-starter-zookeeper</artifactId>
         <version>${revision}</version>
@@ -179,9 +195,9 @@
         <version>${revision}</version>
       </dependency>
       <dependency>
-        <groupId>org.jsoup</groupId>
-        <artifactId>jsoup</artifactId>
-        <version>${jsoup.version}</version>
+        <groupId>xs.rongly.framework.truffle</groupId>
+        <artifactId>xs-rongly-framework-starter-shedJoblock</artifactId>
+        <version>${revision}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
