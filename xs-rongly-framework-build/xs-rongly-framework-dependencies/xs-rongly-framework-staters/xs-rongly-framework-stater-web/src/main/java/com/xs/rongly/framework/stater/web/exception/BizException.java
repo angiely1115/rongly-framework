@@ -18,13 +18,14 @@ public class BizException extends RuntimeException{
     private String msg;
 
     public BizException(String code, String msg) {
+        super(msg);
         this.code = code;
         this.msg = msg;
     }
 
 
     public BizException(Throwable cause, String code, String msg) {
-        super(cause);
+        super(msg,cause);
         this.code = code;
         this.msg = msg;
     }

@@ -17,7 +17,7 @@ public enum ResultCode {
     FILE_ERROR("1199", "文件操作异常"),
     ZOOKEEPER_ERROR("1200", "zookeeper异常"),
     KAFKA_PRODUCER_ERROR("1300", "kafkaProducer异常"),
-    SECURITY_ACCESS_DENIED("1403", "未授权访问!"),
+    SECURITY_ACCESS_DENIED("1403", "未授权访问!请登陆"),
     SECURITY_AUTHENTICATION("1401", "身份验证失败,请输入正确信息!"),
     SECURITY_TOKEN_NOT_ACTIVE("1402", "TOKEN 已失效，刷新token或者重新获取!"),
     PARAM_ERROR("10001", "参数校验错误");
