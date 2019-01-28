@@ -1,5 +1,6 @@
 package com.xs.rongly.framework.stater.security.autoConfig.annotation;
 
+import com.vip.vjtools.vjkit.collection.ListUtil;
 import com.vip.vjtools.vjkit.collection.SetUtil;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.ResourceLoaderAware;
@@ -11,6 +12,7 @@ import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,7 +22,7 @@ import java.util.Set;
  * @Version: 1.0
  * modified by:
  */
-public class BrowserScannerRegistrar implements ImportBeanDefinitionRegistrar, ResourceLoaderAware {
+public class ScannerRegistrar implements ImportBeanDefinitionRegistrar, ResourceLoaderAware {
     private ResourceLoader resourceLoader;
     @Override
     public void setResourceLoader(ResourceLoader resourceLoader) {
@@ -29,7 +31,7 @@ public class BrowserScannerRegistrar implements ImportBeanDefinitionRegistrar, R
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
-        AnnotationAttributes annoAttrs = AnnotationAttributes.fromMap(importingClassMetadata.getAnnotationAttributes(EnableBrowserSecurityConfig.class.getName()));
+        AnnotationAttributes annoAttrs = AnnotationAttributes.fromMap(importingClassMetadata.getAnnotationAttributes(EnableAPPSecurityConfig.class.getName()));
         ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(registry);
 
         // this check is needed in Spring 3.1

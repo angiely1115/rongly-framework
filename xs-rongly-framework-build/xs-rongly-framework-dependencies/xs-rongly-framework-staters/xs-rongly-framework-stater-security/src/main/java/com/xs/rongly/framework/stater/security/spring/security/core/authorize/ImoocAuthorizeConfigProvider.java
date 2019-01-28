@@ -8,10 +8,8 @@ import com.xs.rongly.framework.stater.security.spring.security.core.properties.S
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
-import org.springframework.stereotype.Component;
 
 /**
  * 核心模块的授权配置提供器，安全模块涉及的url的授权配置在这里。

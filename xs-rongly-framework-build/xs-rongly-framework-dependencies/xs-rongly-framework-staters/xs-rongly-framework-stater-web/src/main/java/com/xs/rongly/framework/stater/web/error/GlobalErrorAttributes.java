@@ -1,5 +1,6 @@
 package com.xs.rongly.framework.stater.web.error;
 
+import com.vip.vjtools.vjkit.collection.MapUtil;
 import com.xs.rongly.framework.stater.web.exception.BizException;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.web.context.request.RequestAttributes;
@@ -14,9 +15,13 @@ import java.util.Map;
  * 统一异常处理
  */
 public class GlobalErrorAttributes extends DefaultErrorAttributes {
+    public GlobalErrorAttributes() {
+        super();
+    }
+
     @Override
     public Map<String, Object> getErrorAttributes(WebRequest request, boolean includeStackTrace) {
-        Map<String, Object> errorAttributes = new HashMap<>(4);
+        Map<String, Object> errorAttributes = MapUtil.newHashMapWithCapacity(4,0.75f);
         errorAttributes.put("timestamp", ZonedDateTime.now());
         Throwable error = this.getError(request);
         this.addStatus(errorAttributes, request);

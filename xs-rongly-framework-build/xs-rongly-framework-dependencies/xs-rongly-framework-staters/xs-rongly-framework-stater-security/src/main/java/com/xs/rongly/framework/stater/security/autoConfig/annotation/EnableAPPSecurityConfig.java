@@ -1,6 +1,5 @@
 package com.xs.rongly.framework.stater.security.autoConfig.annotation;
 
-import com.xs.rongly.framework.stater.security.spring.security.browser.BrowserSecurityBeanConfig;
 import com.xs.rongly.framework.stater.security.spring.security.core.SecurityCoreConfig;
 import com.xs.rongly.framework.stater.security.spring.security.core.code.ValidateCodeController;
 import com.xs.rongly.framework.stater.security.spring.security.core.social.SocialConfig;
@@ -16,22 +15,22 @@ import java.lang.annotation.Target;
 
 /**
  * @Author: lvrongzhuan
- * @Description: security 浏览器模式登陆授权
+ * @Description: security APP应用模式登陆授权
  * @Date: 2019/1/24 16:30
  * @Version: 1.0
  * modified by:
  */
 @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@ImportAutoConfiguration(value = {BrowserSecurityBeanConfig.class,SecurityCoreConfig.class, QQAutoConfig.class, WeixinAutoConfiguration.class, SocialConfig.class})
-@Import(BrowserScannerRegistrar.class)
-public @interface EnableBrowserSecurityConfig {
+@ImportAutoConfiguration(value = {SecurityCoreConfig.class, QQAutoConfig.class, WeixinAutoConfiguration.class, SocialConfig.class})
+@Import(ScannerRegistrar.class)
+public @interface EnableAPPSecurityConfig {
 
     /**
      * 扫描路径
      * @return
      */
-    String[] basePackages() default {"com.xs.rongly.framework.stater.security.spring.security.browser.controller"};
+    String[] basePackages() default {"com.xs.rongly.framework.stater.security.spring.security.app"};
 
     /**
      * 扫描的类

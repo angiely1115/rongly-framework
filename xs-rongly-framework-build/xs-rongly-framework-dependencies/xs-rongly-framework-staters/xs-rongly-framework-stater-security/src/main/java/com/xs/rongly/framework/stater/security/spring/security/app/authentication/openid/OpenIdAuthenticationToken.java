@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.xs.rongly.framework.stater.security.spring.security.core.authentication.mobile;
+package com.xs.rongly.framework.stater.security.spring.security.app.authentication.openid;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,10 +10,10 @@ import org.springframework.security.core.SpringSecurityCoreVersion;
 import java.util.Collection;
 
 /**
- * 短信登录验证信息封装类
- * 
+ * @author zhailiang
+ *
  */
-public class SmsCodeAuthenticationToken extends AbstractAuthenticationToken {
+public class OpenIdAuthenticationToken extends AbstractAuthenticationToken {
 
 	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 
@@ -21,6 +21,7 @@ public class SmsCodeAuthenticationToken extends AbstractAuthenticationToken {
 	// ================================================================================================
 
 	private final Object principal;
+	private String providerId;
 
 	// ~ Constructors
 	// ===================================================================================================
@@ -31,9 +32,10 @@ public class SmsCodeAuthenticationToken extends AbstractAuthenticationToken {
 	 * will return <code>false</code>.
 	 *
 	 */
-	public SmsCodeAuthenticationToken(String mobile) {
+	public OpenIdAuthenticationToken(String openId, String providerId) {
 		super(null);
-		this.principal = mobile;
+		this.principal = openId;
+		this.providerId = providerId;
 		setAuthenticated(false);
 	}
 
@@ -44,10 +46,9 @@ public class SmsCodeAuthenticationToken extends AbstractAuthenticationToken {
 	 * authentication token.
 	 *
 	 * @param principal
-	 * @param credentials
 	 * @param authorities
 	 */
-	public SmsCodeAuthenticationToken(Object principal,
+	public OpenIdAuthenticationToken(Object principal,
 			Collection<? extends GrantedAuthority> authorities) {
 		super(authorities);
 		this.principal = principal;
@@ -65,6 +66,10 @@ public class SmsCodeAuthenticationToken extends AbstractAuthenticationToken {
 	@Override
 	public Object getPrincipal() {
 		return this.principal;
+	}
+	
+	public String getProviderId() {
+		return providerId;
 	}
 
 	@Override

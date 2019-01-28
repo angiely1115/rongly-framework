@@ -39,8 +39,9 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
 	@Override
 	public void create(ServletWebRequest request) throws Exception {
 		C validateCode = generate(request);
-		save(request, validateCode);
 		send(request, validateCode);
+		save(request, validateCode);
+
 	}
 
 	/**
@@ -103,13 +104,12 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
 			throw new ValidateCodeException(codeType + "验证码不存在");
 		}
 
-		if (codeInSession.isExpried()) {
+		if (codeInSession.expried()) {
 			validateCodeRepository.remove(request, codeType);
 			throw new ValidateCodeException(codeType + "验证码已过期");
 		}
 		String codeInRequest;
 		try {
-			codeInRequest = request.getRequest().getParameter(codeType.getParamNameOnValidate());
 			codeInRequest = ServletRequestUtils.getStringParameter(request.getRequest(),
 					codeType.getParamNameOnValidate());
 		} catch (ServletRequestBindingException e) {

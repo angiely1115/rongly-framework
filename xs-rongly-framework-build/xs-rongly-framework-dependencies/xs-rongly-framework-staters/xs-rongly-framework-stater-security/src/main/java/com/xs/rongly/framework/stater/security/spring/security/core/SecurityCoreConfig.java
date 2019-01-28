@@ -94,7 +94,7 @@ public class SecurityCoreConfig {
     }
 
     @Bean(name = "smsValidateCodeGenerator")
-    @ConditionalOnMissingBean
+    @ConditionalOnMissingBean(name = "smsValidateCodeGenerator")
    public SmsCodeGenerator smsCodeGenerator(){
         return new SmsCodeGenerator();
    }

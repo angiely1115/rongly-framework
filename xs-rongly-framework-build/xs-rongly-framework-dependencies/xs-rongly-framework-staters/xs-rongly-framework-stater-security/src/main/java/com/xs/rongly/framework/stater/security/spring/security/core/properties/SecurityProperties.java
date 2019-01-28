@@ -8,6 +8,9 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import javax.validation.constraints.Max;
+import java.util.List;
+
 /**
  * @author zhailiang
  */
@@ -229,7 +232,7 @@ public class SecurityProperties {
      */
     @Getter
     @Setter
-    public class OAuth2Properties {
+    public static class OAuth2Properties {
 
         /**
          * 使用jwt时为token签名的秘钥
@@ -239,7 +242,30 @@ public class SecurityProperties {
         /**
          * 客户端配置
          */
-        private OAuth2ClientProperties[] clients = {};
+        private List<OAuth2ClientProperties> clients;
+
+        @Getter
+        @Setter
+        public static class OAuth2ClientProperties {
+
+            /**
+             * 第三方应用appId
+             */
+            private String clientId;
+            /**
+             * 第三方应用appSecret
+             */
+            private String clientSecret;
+            /**
+             * 针对此应用发出的token的有效时间
+             */
+            private int accessTokenValidateSeconds = 7200;
+            /**
+             * 刷新令牌的有效期
+             */
+            private int refreshTokenValiditySeconds = 2592000;
+
+        }
     }
 }
 
