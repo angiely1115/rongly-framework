@@ -11,5 +11,13 @@
 
     <artifactId>xs-rongly-framework-starter-dubbo</artifactId>
 
+    <dependencies>
+        <!-- Dubbo Spring Boot Starter -->
+        <dependency>
+            <groupId>com.alibaba.boot</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <version>0.2.0</version>
+        </dependency>
+    </dependencies>
 
 </project>

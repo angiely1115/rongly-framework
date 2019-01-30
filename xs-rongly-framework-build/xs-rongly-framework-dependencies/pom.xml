@@ -32,6 +32,7 @@
         <vip.vjtools>1.0.8</vip.vjtools>
         <jsoup.version>1.11.2</jsoup.version>
         <shedlock.version>2.2.0</shedlock.version>
+        <dubbo.version>2.6.5</dubbo.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -53,6 +54,14 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Dubbo dependencies -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo-dependencies-bom</artifactId>
+                <version>${dubbo.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -224,6 +233,11 @@
                 <artifactId>xs-rongly-framework-starter-shedJoblock</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>xs.rongly.framework.truffle</groupId>
+                <artifactId>xs-rongly-framework-starter-dubbo</artifactId>
+                <version>${revision}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
@@ -317,7 +331,6 @@
                  <enabled>true</enabled>
              </snapshots>
          </repository>
-
         <repository>
             <id>spring-snapshots</id>
             <name>Spring Snapshots</name>

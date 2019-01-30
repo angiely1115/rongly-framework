@@ -24,6 +24,7 @@
         <module>xs-rongly-framework-stater-mongodb</module>
         <module>xs-rongly-framework-stater-security</module>
         <module>xs-rongly-framework-starter-shedJoblock</module>
+        <module>xs-rongly-framework-starter-dubbo</module>
     </modules>
 
     <dependencies>

@@ -8,11 +8,9 @@ import com.xs.rongly.framework.stater.security.spring.security.core.social.qq.co
 import com.xs.rongly.framework.stater.security.spring.security.core.social.weixin.config.WeixinAutoConfiguration;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.annotation.AliasFor;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * @Author: lvrongzhuan
@@ -23,19 +21,22 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
+@Inherited
 @ImportAutoConfiguration(value = {BrowserSecurityBeanConfig.class,SecurityCoreConfig.class, QQAutoConfig.class, WeixinAutoConfiguration.class, SocialConfig.class})
-@Import(BrowserScannerRegistrar.class)
+@SecurityScan
 public @interface EnableBrowserSecurityConfig {
 
     /**
      * 扫描路径
      * @return
      */
+    @AliasFor(annotation = SecurityScan.class,attribute = "basePackages")
     String[] basePackages() default {"com.xs.rongly.framework.stater.security.spring.security.browser.controller"};
 
     /**
      * 扫描的类
      * @return
      */
+    @AliasFor(annotation = SecurityScan.class,attribute = "classs")
     Class<?>[] classs() default {ValidateCodeController.class};
 }

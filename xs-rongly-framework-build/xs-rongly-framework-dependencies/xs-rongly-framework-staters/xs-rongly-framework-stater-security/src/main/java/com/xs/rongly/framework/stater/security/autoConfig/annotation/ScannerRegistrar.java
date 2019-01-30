@@ -2,6 +2,9 @@ package com.xs.rongly.framework.stater.security.autoConfig.annotation;
 
 import com.vip.vjtools.vjkit.collection.ListUtil;
 import com.vip.vjtools.vjkit.collection.SetUtil;
+import org.springframework.beans.factory.support.AbstractBeanDefinition;
+import org.springframework.beans.factory.support.BeanDefinitionBuilder;
+import org.springframework.beans.factory.support.BeanDefinitionReaderUtils;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
@@ -22,22 +25,12 @@ import java.util.Set;
  * @Version: 1.0
  * modified by:
  */
-public class ScannerRegistrar implements ImportBeanDefinitionRegistrar, ResourceLoaderAware {
-    private ResourceLoader resourceLoader;
-    @Override
-    public void setResourceLoader(ResourceLoader resourceLoader) {
-        this.resourceLoader = resourceLoader;
-    }
+public class ScannerRegistrar implements ImportBeanDefinitionRegistrar {
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
-        AnnotationAttributes annoAttrs = AnnotationAttributes.fromMap(importingClassMetadata.getAnnotationAttributes(EnableAPPSecurityConfig.class.getName()));
+        AnnotationAttributes annoAttrs = AnnotationAttributes.fromMap(importingClassMetadata.getAnnotationAttributes(SecurityScan.class.getName()));
         ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(registry);
-
-        // this check is needed in Spring 3.1
-        if (resourceLoader != null) {
-            scanner.setResourceLoader(resourceLoader);
-        }
         String[] strings = annoAttrs.getStringArray("basePackages");
         Class<?>[]  classes = annoAttrs.getClassArray("classs");
         if ((strings!=null&&strings.length>0)) {
@@ -54,6 +47,5 @@ public class ScannerRegistrar implements ImportBeanDefinitionRegistrar, Resource
             }
             scanner.scan(StringUtils.toStringArray(basePackages));
         }
-
     }
 }

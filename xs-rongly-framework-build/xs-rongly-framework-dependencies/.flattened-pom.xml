@@ -30,10 +30,11 @@
     <reflections.version>0.9.11</reflections.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <revision>1.1.0-SNAPSHOT</revision>
+    <dubbo.version>2.6.5</dubbo.version>
     <java.version>1.8</java.version>
     <shedlock.version>2.2.0</shedlock.version>
-    <jsoup.version>1.11.2</jsoup.version>
     <shardingsphere.release.version>3.0.0</shardingsphere.release.version>
+    <jsoup.version>1.11.2</jsoup.version>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <log4jdbc.version>1.16</log4jdbc.version>
     <main.basedir>D:\resource\workspace\framework\xs-rongly-framework-build\xs-rongly-framework-dependencies</main.basedir>
@@ -51,6 +52,13 @@
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
         <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>dubbo-dependencies-bom</artifactId>
+        <version>${dubbo.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -197,6 +205,11 @@
       <dependency>
         <groupId>xs.rongly.framework.truffle</groupId>
         <artifactId>xs-rongly-framework-starter-shedJoblock</artifactId>
+        <version>${revision}</version>
+      </dependency>
+      <dependency>
+        <groupId>xs.rongly.framework.truffle</groupId>
+        <artifactId>xs-rongly-framework-starter-dubbo</artifactId>
         <version>${revision}</version>
       </dependency>
     </dependencies>

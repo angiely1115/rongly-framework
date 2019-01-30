@@ -7,11 +7,9 @@ import com.xs.rongly.framework.stater.security.spring.security.core.social.qq.co
 import com.xs.rongly.framework.stater.security.spring.security.core.social.weixin.config.WeixinAutoConfiguration;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.annotation.AliasFor;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * @Author: lvrongzhuan
@@ -22,19 +20,23 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Inherited
 @ImportAutoConfiguration(value = {SecurityCoreConfig.class, QQAutoConfig.class, WeixinAutoConfiguration.class, SocialConfig.class})
-@Import(ScannerRegistrar.class)
+@SecurityScan
 public @interface EnableAPPSecurityConfig {
 
     /**
      * 扫描路径
      * @return
      */
-    String[] basePackages() default {"com.xs.rongly.framework.stater.security.spring.security.app"};
+    @AliasFor(annotation = SecurityScan.class, attribute = "basePackages")
+    String[] scanbasePackages() default {"com.xs.rongly.framework.stater.security.spring.security.app"};
 
     /**
      * 扫描的类
      * @return
      */
-    Class<?>[] classs() default {ValidateCodeController.class};
+    @AliasFor(annotation = SecurityScan.class, attribute = "classs")
+    Class<?>[] scanclasss() default {ValidateCodeController.class};
 }
