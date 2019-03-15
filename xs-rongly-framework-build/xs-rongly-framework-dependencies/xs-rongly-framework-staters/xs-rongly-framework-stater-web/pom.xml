@@ -64,6 +64,10 @@
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
         </dependency>
+        <dependency>
+            <groupId>xs.rongly.framework.truffle</groupId>
+            <artifactId>xs-rongly-framework-core-base</artifactId>
+        </dependency>
     </dependencies>
 
 

@@ -12,7 +12,7 @@ import org.springframework.core.annotation.Order;
 
 /**
  * @Author: lvrongzhuan
- * @Description:
+ * @Description: 统一异常处理
  * @Date: 2019/1/19 10:34
  * @Version: 1.0
  * modified by:
