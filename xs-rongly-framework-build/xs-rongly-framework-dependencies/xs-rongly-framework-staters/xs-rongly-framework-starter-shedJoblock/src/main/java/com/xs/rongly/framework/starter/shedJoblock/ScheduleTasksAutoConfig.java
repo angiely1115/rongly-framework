@@ -31,7 +31,7 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
  */
 @Slf4j
 @Configuration
-//@ConditionalOnBean(RedisConnectionFactory.class)
+@ConditionalOnBean(RedisConnectionFactory.class)
 @EnableScheduling
 //最大锁10分钟
 @EnableSchedulerLock(defaultLockAtMostFor = "PT10M")

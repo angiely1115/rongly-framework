@@ -5,10 +5,10 @@
     <parent>
         <artifactId>xs.rongly.framework.build</artifactId>
         <groupId>xs.rongly.framework.truffle</groupId>
-        <version>1.1.0-SNAPSHOT</version>
+        <version>1.1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <version>${revision}</version>
+    <version>1.1.0</version>
     <artifactId>xs.rongly.framework.dependencies</artifactId>
     <packaging>pom</packaging>
     <modules>
@@ -118,11 +118,11 @@
                 <artifactId>curator-recipes</artifactId>
                 <version>${curator.version}</version>
             </dependency>
-            <dependency>
+          <!--  <dependency>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.4.3</version>
-            </dependency>
+            </dependency>-->
             <!-- lang3 -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -321,9 +321,8 @@
     </build>
     <repositories>
          <repository>
-             <id>hn-nexus</id>
-             <name>huinong nexus repository</name>
-             <url>http://47.95.120.66:8081/repository/maven-releases/</url>
+              <id>rdc-releases</id>
+            <url>https://repo.rdc.aliyun.com/repository/67158-release-WANpkc/</url>
              <releases>
                  <enabled>true</enabled>
              </releases>
@@ -331,10 +330,10 @@
                  <enabled>true</enabled>
              </snapshots>
          </repository>
+
         <repository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
+           <id>rdc-snapshots</id>
+            <url>https://repo.rdc.aliyun.com/repository/67158-snapshot-Fe1HXB/</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
@@ -370,16 +369,15 @@
 
      <distributionManagement>
          <repository>
-             <id>hn-nexus-releases</id>
-             <url>
-                 http://47.95.120.66:8081/repository/rongly-snapshots/
-             </url>
+             <id>rdc-releases</id>
+             <name>releases</name>
+             <url>https://repo.rdc.aliyun.com/repository/67158-release-WANpkc/</url>
          </repository>
          <snapshotRepository>
-             <id>hn-nexus-snapshot</id>
-             <url>
-                 http://47.95.120.66:8081/nexus/content/repositories/snapshots/
-             </url>
+             <id>rdc-snapshots</id>
+             <name>snapshots</name>
+             <url>https://repo.rdc.aliyun.com/repository/67158-snapshot-Fe1HXB/</url>
          </snapshotRepository>
      </distributionManagement>
+    
 </project>
