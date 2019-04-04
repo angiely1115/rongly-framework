@@ -33,6 +33,7 @@
         <jsoup.version>1.11.2</jsoup.version>
         <shedlock.version>2.2.0</shedlock.version>
         <dubbo.version>2.6.5</dubbo.version>
+        <oss.version>2.8.3</oss.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -184,6 +185,12 @@
                 <groupId>net.javacrumbs.shedlock</groupId>
                 <artifactId>shedlock-provider-redis-spring</artifactId>
                 <version>${shedlock.version}</version>
+            </dependency>
+    
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${oss.version}</version>
             </dependency>
             <!--my staters-->
             <dependency>
