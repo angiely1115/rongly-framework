@@ -20,11 +20,6 @@ import java.io.IOException;
 public class XssRequestFilter extends OncePerRequestFilter {
 
     /**
-     * 使用htmlUtil来防御xss
-     */
-    @Value("${xss.htmlutil.type}")
-    private boolean user_xss_htmlutil_type = true;
-    /**
      * 不需要防御xss的访问路径
      */
     @Value("${xss.exclude.paths}")
@@ -38,11 +33,7 @@ public class XssRequestFilter extends OncePerRequestFilter {
             //涉及保存操作的进行xss过滤
             if (!ifNoNeedXss(requestURI)) {
                 log.info("xss拦截路径:{}",requestURI);
-                if (user_xss_htmlutil_type) {
                     request = new XssHtmlUtilHttpServletRequestWrapper((HttpServletRequest) request);
-                } else {
-                    request = new XssHttpServletRequestWrapper((HttpServletRequest) request);
-                }
             }
         filterChain.doFilter(request, response);
     }

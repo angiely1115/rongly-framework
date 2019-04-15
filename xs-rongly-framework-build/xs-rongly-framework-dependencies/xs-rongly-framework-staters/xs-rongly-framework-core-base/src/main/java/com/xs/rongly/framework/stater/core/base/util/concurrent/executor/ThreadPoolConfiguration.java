@@ -20,15 +20,15 @@ public class ThreadPoolConfiguration implements AsyncConfigurer {
     /**
      * 设置默认值配置:${threadPool-corePoolSize:10}
      */
-    @Value("${threadPool-corePoolSize:10}")
+    @Value("${threadPool-corePoolSize:20}")
     @Nullable
-    private Integer corePoolSize = 10;
+    private Integer corePoolSize = 20;
     @Value("${threadPool-maxPoolSize:30}")
     @Nullable
-    private Integer maxPoolSize = 30;
+    private Integer maxPoolSize = 40;
     @Value("${threadPool-queueCapacity:100}")
     @Nullable
-    private Integer queueCapacity = 100;
+    private Integer queueCapacity = 300;
   @Override
   @Bean
   @Primary

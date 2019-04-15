@@ -1,6 +1,7 @@
 package com.xs.rongly.framework.stater.web.filter.xss;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.web.util.HtmlUtils;
 
@@ -8,12 +9,8 @@ import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
-import javax.swing.text.html.HTML;
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.util.stream.Stream;
 
 /**
@@ -84,11 +81,11 @@ public class XssHtmlUtilHttpServletRequestWrapper extends HttpServletRequestWrap
       return super.getInputStream();
     } else {
       //处理原request的流中的数据
-      byte[] bytes = inputHandlers(super.getInputStream()).getBytes();
+      byte[] bytes = IOUtils.toByteArray(super.getInputStream());
       final ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
       return new ServletInputStream() {
         @Override
-        public int read() throws IOException {
+        public int read()  {
           return bais.read();
         }
         @Override
@@ -103,42 +100,12 @@ public class XssHtmlUtilHttpServletRequestWrapper extends HttpServletRequestWrap
 
         @Override
         public void setReadListener(ReadListener readListener) {
+          
         }
       };
     }
 
   }
 
-  public String inputHandlers(ServletInputStream servletInputStream) {
-    StringBuilder sb = new StringBuilder();
-    BufferedReader reader = null;
-    try {
-      reader = new BufferedReader(new InputStreamReader(servletInputStream, Charset.forName("UTF-8")));
-      String line = "";
-      while ((line = reader.readLine()) != null) {
-        sb.append(line);
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
-    } finally {
-      if (servletInputStream != null) {
-        try {
-          servletInputStream.close();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
-      if (reader != null) {
-        try {
-          reader.close();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
-    }
-    String finl = JsoupUtil.jsonStringConvert(sb.toString());
-    finl = HtmlUtils.htmlEscape(finl);
-    return finl;
-  }
 
 }
