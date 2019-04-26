@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 
 
@@ -24,7 +25,7 @@ public class XssRequestFilter extends OncePerRequestFilter {
      */
     @Value("${xss.exclude.paths}")
     private String excludePaths = "/css/*,/static/*,*.js,*.gif,*.jpg,*.png,*.css,*.ico,/reg";
-    private AntPathMatcher antPathMatcher = new AntPathMatcher();
+    private AntPathMatcher antPathMatcher = new AntPathMatcher(File.separator);
 
 
     @Override

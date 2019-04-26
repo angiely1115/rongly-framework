@@ -5,7 +5,6 @@ import com.aliyun.oss.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
-import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.net.URL;
@@ -88,9 +87,10 @@ public class AliYunOss {
             metadata.setContentEncoding("utf-8");
             metadata.setContentType(getContentType(fileName));
             metadata.setContentDisposition("filename/filesize=" + fileName + "/" + fileSize + "Byte.");
-            if (isOfficeDocument(fileName)) {
+            // 不使用公共读
+            /* if (isOfficeDocument(fileName)) {
                 metadata.setObjectAcl(CannedAccessControlList.PublicRead);
-            }
+            }*/
             //上传文件
             putResult = client.putObject(bucketName, relativePath + fileName, fileInputStream, metadata);
             //解析结果
@@ -267,7 +267,7 @@ public class AliYunOss {
      * @return
      * @throws IOException
      */
-    public  ObjectMetadata downloadFileByFile(String filePath,File file) throws IOException {
+    public  ObjectMetadata downloadFileByFile(String filePath,File file) {
         OSSClient ossClient = getOSSClient();
         try {
             return ossClient.getObject(new GetObjectRequest(bucketName, filePath), file);
