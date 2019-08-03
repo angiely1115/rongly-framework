@@ -7,7 +7,6 @@ import com.xs.rongly.framework.stater.security.spring.security.core.social.Socia
 import com.xs.rongly.framework.stater.security.spring.security.core.social.qq.config.QQAutoConfig;
 import com.xs.rongly.framework.stater.security.spring.security.core.social.weixin.config.WeixinAutoConfiguration;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
-import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.*;

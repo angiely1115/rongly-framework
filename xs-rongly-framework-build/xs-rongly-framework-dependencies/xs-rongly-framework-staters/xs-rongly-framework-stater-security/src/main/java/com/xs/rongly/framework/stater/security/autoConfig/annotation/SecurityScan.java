@@ -1,6 +1,5 @@
 package com.xs.rongly.framework.stater.security.autoConfig.annotation;
 
-import com.xs.rongly.framework.stater.security.spring.security.core.code.ValidateCodeController;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;

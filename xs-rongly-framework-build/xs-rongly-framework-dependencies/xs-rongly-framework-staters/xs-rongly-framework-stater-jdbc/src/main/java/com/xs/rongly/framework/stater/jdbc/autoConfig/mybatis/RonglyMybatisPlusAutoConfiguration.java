@@ -19,7 +19,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.mapper.ClassPathMapperScanner;
 import org.mybatis.spring.mapper.MapperFactoryBean;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.ObjectProvider;
@@ -44,7 +43,6 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
-import java.util.Iterator;
 import java.util.List;
 
 @Configuration
@@ -91,16 +89,12 @@ public class RonglyMybatisPlusAutoConfiguration {
         }
 
         if (configuration != null && !CollectionUtils.isEmpty(this.configurationCustomizers)) {
-            Iterator i$ = this.configurationCustomizers.iterator();
-
-            while(i$.hasNext()) {
-                ConfigurationCustomizer customizer = (ConfigurationCustomizer)i$.next();
-                customizer.customize(configuration);
+            for (ConfigurationCustomizer configurationCustomizer : configurationCustomizers) {
+                configurationCustomizer.customize(configuration);
             }
+            configuration.setDefaultScriptingLanguage(MybatisXMLLanguageDriver.class);
+            factory.setConfiguration(configuration);
         }
-
-        configuration.setDefaultScriptingLanguage(MybatisXMLLanguageDriver.class);
-        factory.setConfiguration(configuration);
         if (this.properties.getConfigurationProperties() != null) {
             factory.setConfigurationProperties(this.properties.getConfigurationProperties());
         }
@@ -146,8 +140,6 @@ public class RonglyMybatisPlusAutoConfiguration {
     @Import({RonglyMybatisPlusAutoConfiguration.AutoConfiguredMapperScannerRegistrar.class})
     @ConditionalOnMissingBean({MapperFactoryBean.class})
     public static class MapperScannerRegistrarNotFoundConfiguration {
-        public MapperScannerRegistrarNotFoundConfiguration() {
-        }
 
         @PostConstruct
         public void afterPropertiesSet() {
@@ -159,9 +151,7 @@ public class RonglyMybatisPlusAutoConfiguration {
         private BeanFactory beanFactory;
         private ResourceLoader resourceLoader;
 
-        public AutoConfiguredMapperScannerRegistrar() {
-        }
-
+        @Override
         public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
             RonglyMybatisPlusAutoConfiguration.logger.debug("Searching for mappers annotated with @Mapper");
             ClassPathMapperScanner scanner = new ClassPathMapperScanner(registry);
@@ -173,11 +163,8 @@ public class RonglyMybatisPlusAutoConfiguration {
 
                 List<String> packages = AutoConfigurationPackages.get(this.beanFactory);
                 if (RonglyMybatisPlusAutoConfiguration.logger.isDebugEnabled()) {
-                    Iterator i$ = packages.iterator();
-
-                    while(i$.hasNext()) {
-                        String pkg = (String)i$.next();
-                        RonglyMybatisPlusAutoConfiguration.logger.debug("Using auto-configuration base package '" + pkg + "'");
+                    for (String aPackage : packages) {
+                        RonglyMybatisPlusAutoConfiguration.logger.debug("Using auto-configuration base package '" + aPackage + "'");
                     }
                 }
 
@@ -190,10 +177,12 @@ public class RonglyMybatisPlusAutoConfiguration {
 
         }
 
-        public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        @Override
+        public void setBeanFactory(BeanFactory beanFactory)  {
             this.beanFactory = beanFactory;
         }
 
+        @Override
         public void setResourceLoader(ResourceLoader resourceLoader) {
             this.resourceLoader = resourceLoader;
         }
