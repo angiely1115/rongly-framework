@@ -1,4 +1,4 @@
-package com.xs.rongly.framework.stater.redis.autoConfig;
+package com.xs.rongly.framework.stater.redis.autoconfig;
 
 import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.lang.Nullable;

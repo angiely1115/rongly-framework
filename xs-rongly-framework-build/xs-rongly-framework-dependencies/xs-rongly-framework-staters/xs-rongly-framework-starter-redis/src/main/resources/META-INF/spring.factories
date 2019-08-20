@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.xs.rongly.framework.stater.redis.autoConfig.RonglyRedisAutoConfig
+com.xs.rongly.framework.stater.redis.autoconfig.RonglyRedisAutoConfig

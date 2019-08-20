@@ -5,10 +5,9 @@
     <parent>
         <artifactId>xs.rongly.framework.build</artifactId>
         <groupId>xs.rongly.framework.truffle</groupId>
-        <version>1.1.0</version>
+        <version>1.1.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <version>1.1.0</version>
     <artifactId>xs.rongly.framework.dependencies</artifactId>
     <packaging>pom</packaging>
     <modules>

@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>xs.rongly.framework.truffle</groupId>
     <artifactId>xs.rongly.framework.build</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <modules>
         <module>xs-rongly-framework-dependencies</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
         <main.basedir>${basedir}</main.basedir>
-        <revision>1.1.0-SNAPSHOT</revision>
+        <version>1.1.1</version>
         <nexus.url>http://47.95.120.66:8081</nexus.url>
     </properties>
 
