@@ -23,7 +23,7 @@
         <spring.boot.version>2.1.0.RELEASE</spring.boot.version>
         <commons.lang.version>3.6</commons.lang.version>
         <reflections.version>0.9.11</reflections.version>
-        <commons-io.version>2.6</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
         <shardingsphere.release.version>3.0.0</shardingsphere.release.version>
         <log4jdbc.version>1.16</log4jdbc.version>
