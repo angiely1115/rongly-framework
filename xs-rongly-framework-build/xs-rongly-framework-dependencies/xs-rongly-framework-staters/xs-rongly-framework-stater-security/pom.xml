@@ -11,7 +11,7 @@
 
     <artifactId>xs.rongly.framework.stater.security</artifactId>
     <properties>
-        <shiro.version>1.4.0</shiro.version>
+        <shiro.version>1.10.0</shiro.version>
         <spring-social.version>1.1.4.RELEASE</spring-social.version>
     </properties>
 
